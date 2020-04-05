@@ -1,9 +1,10 @@
 package businessLayer;
 
 public class City {
-    public Integer cityId;
-    public Integer score;
-    public Integer pollution;
+    private Integer cityId;
+    private String name;
+    private Integer score;
+    private Integer pollution;
 
     public City()
     {
@@ -32,5 +33,13 @@ public class City {
 
     public void setPollution(Integer pollution) {
         this.pollution = pollution;
+    }
+    public String getName()
+    {
+        return this.name;
+    }
+    public void setName(String name)
+    {
+        this.name = name;
     }
 }

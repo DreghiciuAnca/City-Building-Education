@@ -2,7 +2,7 @@ package businessLayer;
 
 public class District {
     private Integer districtId;
-    private String rating;
+    private Integer rating;
     private Integer city_id;
 
     public District()
@@ -17,11 +17,11 @@ public class District {
         this.districtId = districtId;
     }
 
-    public String getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
