@@ -1,0 +1,98 @@
+package com.PsIter1.Iteration1.Model;
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+@Table(name = "place")
+public class Place {
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String proximity;
+
+    private String address;
+
+    private Integer capacity;
+
+    private Integer disponibility;
+
+    private String contact;
+
+    @ManyToOne
+    @JoinColumn(name = "district_id", nullable = false, foreignKey=@ForeignKey(name = "Fk_district_id"))
+    private District district;
+
+    @OneToOne
+    @JoinColumn(name = "geometry_id", nullable = false, foreignKey=@ForeignKey(name = "Fk_geometry_id"))
+    private Geometry geometry;
+
+    @OneToMany
+    @JoinColumn(name = "picture_id", nullable = false, foreignKey=@ForeignKey(name = "Fk_picture_id"))
+    private Set<Picture> picture;
+
+    @OneToOne
+    @JoinColumn(name = "place_type_id", nullable = false, foreignKey=@ForeignKey(name = "Fk_place_type_id"))
+    private PlaceType placeType;
+
+    public Place(){
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getProximity() {
+        return proximity;
+    }
+
+    public void setProximity(String proximity) {
+        this.proximity = proximity;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+
+    public Integer getDisponibility() {
+        return disponibility;
+    }
+
+    public void setDisponibility(Integer disponibility) {
+        this.disponibility = disponibility;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public District getDistrict() {
+        return district;
+    }
+
+    public void setDistrict(District district) {
+        this.district = district;
+    }
+}
