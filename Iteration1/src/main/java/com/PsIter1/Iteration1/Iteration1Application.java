@@ -14,7 +14,6 @@ public class Iteration1Application {
 
 		Gui nouGui = new Gui();
 		SpringApplication.run(Iteration1Application.class, args);
-
 	}
 
 }

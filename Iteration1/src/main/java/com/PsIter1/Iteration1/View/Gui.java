@@ -4,10 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 public class Gui extends JFrame implements MouseListener {
 
     private JFrame window = new JFrame("City Building");
+    private ArrayList<Map> mapList = new ArrayList<>();
+
 
 
     public Gui()
@@ -18,10 +21,12 @@ public class Gui extends JFrame implements MouseListener {
     public void initFrame()
     {
 
-        window.setSize(550,550);
+        window.setSize(600,600);
         window.addMouseListener(this);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setVisible(true);
+
+
     }
 
 
@@ -35,17 +40,16 @@ public class Gui extends JFrame implements MouseListener {
 
         System.out.println(e.getX()+ " " + e.getY());
         //paint(getGraphics());
-        Map nou = new Map(e.getX(),e.getY());
-
-        window.add(nou);
-        //window.repaint();
+        Map map = new Map(e.getX(),e.getY());
+        window.add(map);
+        //repaint();
         window.setVisible(true);
+
 
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
     }
     @Override
     public void mouseEntered(MouseEvent e) {
