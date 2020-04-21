@@ -24,6 +24,8 @@ public class Place {
     @JoinColumn(name = "district_id", nullable = false, foreignKey=@ForeignKey(name = "Fk_district_id"))
     private District district;
 
+
+
     @OneToOne
     @JoinColumn(name = "geometry_id", nullable = false, foreignKey=@ForeignKey(name = "Fk_geometry_id"))
     private Geometry geometry;
@@ -94,5 +96,28 @@ public class Place {
 
     public void setDistrict(District district) {
         this.district = district;
+    }
+    public Geometry getGeometry() {
+        return geometry;
+    }
+
+    public void setGeometry(Geometry geometry) {
+        this.geometry = geometry;
+    }
+
+    public Set<Picture> getPicture() {
+        return picture;
+    }
+
+    public void setPicture(Set<Picture> picture) {
+        this.picture = picture;
+    }
+
+    public PlaceType getPlaceType() {
+        return placeType;
+    }
+
+    public void setPlaceType(PlaceType placeType) {
+        this.placeType = placeType;
     }
 }
