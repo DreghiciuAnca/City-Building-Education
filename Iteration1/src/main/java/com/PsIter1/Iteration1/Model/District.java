@@ -1,6 +1,7 @@
 package com.PsIter1.Iteration1.Model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "district")
@@ -42,4 +43,22 @@ public class District {
     public void setCity(City city) {
         this.city = city;
     }
+    public void ComputeRatingDistrict(ArrayList<Place> places)
+    {
+        int rating = 0;
+        for(int i =0 ; i<places.size(); i++)
+        {
+            String proximity = places.get(i).getProximity();
+            switch (proximity){
+                case "park": rating += 75;
+                case "hospital" : rating += 100;
+                case "night_club" : rating += 20;
+                case "theater" : rating += 80;
+                case "library" : rating += 30;
+                default: rating += 40;
+            }
+        }
+        this.setRating(rating);
+    }
+
 }
