@@ -1,4 +1,7 @@
 package com.Dreghiciu.Iteration2;
+import com.Dreghiciu.Iteration2.client.ClientGui;
+
+import javax.swing.*;
 import java.net.*;
 import java.io.*;
 
@@ -8,6 +11,7 @@ public class Client {
     private DataInputStream input = null;
     private DataOutputStream output = null;
     private DataInputStream in = null;
+    private ClientGui clientGui = null;
 
     public Client(String address, int port)
     {
@@ -25,12 +29,13 @@ public class Client {
         }
         String line = "";
         String line2 = "";
+        ClientGui clientGui = new ClientGui();
 
-        while(!line.equals("Over") || !line2.equals("Over"))
+        while((!line.equals("Over")) && (!line2.equals("Over")))
         {
             try{
                 line= input.readLine();
-                //System.out.println(line);
+                System.out.println(line);
                 output.writeUTF(line);
 
             } catch (IOException e) {
@@ -50,12 +55,14 @@ public class Client {
            input.close();
            output.close();
            socket.close();
+           clientGui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
        } catch (IOException e) {
            e.printStackTrace();
        }
     }
 
     public static void main(String[] args){
+
         Client client = new Client("127.0.0.1", 5000);
     }
 }

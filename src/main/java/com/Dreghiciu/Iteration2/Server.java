@@ -14,12 +14,17 @@ public class Server {
     private DataInputStream in = null;
     private DataOutputStream output = null;
     private DataInputStream input = null;
+    public Server()
+    {
 
+    }
 
     public Server(int port)
     {
+
         try{
-            server = new ServerSocket(port);
+
+            server = new ServerSocket(5000);
             System.out.println("Server Started");
 
             System.out.println("Waiting for a client... ");
@@ -33,7 +38,7 @@ public class Server {
             String line = "";
             String line2 = "";
 
-            while (!line.equals("Over") || !line2.equals("Over"))
+            while ((!line.equals("Over"))&&(!line2.equals("Over")))
             {
                 try {
                     line = in.readUTF();
@@ -68,7 +73,8 @@ public class Server {
     public static void main(String[] args)
     {
         Server server = new Server(5000);
-        SpringApplication.run(Iteration2Application.class, args);
+        //SpringApplication.run(Server.class, args);
+
     }
 
 }
