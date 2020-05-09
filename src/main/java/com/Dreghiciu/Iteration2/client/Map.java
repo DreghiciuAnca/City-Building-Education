@@ -1,7 +1,10 @@
 package com.Dreghiciu.Iteration2.client;
 
+import org.springframework.data.relational.core.sql.In;
+
 import javax.swing.*;
 import java.awt.*;
+
 
 public class Map extends JPanel {
     private int x;
@@ -10,15 +13,15 @@ public class Map extends JPanel {
     {
 
     }
-    public Map(int x,int y)
+    public Map(int x, int y)
     {
         this.x=x;
         this.y=y;
-
     }
 
     public void paintComponent(Graphics g)
     {
+
         super.paintComponent(g);
         this.setBackground(Color.WHITE);
         g.setColor(Color.BLACK);
@@ -30,6 +33,5 @@ public class Map extends JPanel {
 
         g.fillRect(auxX,auxY,100,100);
         repaint(auxX,auxY,100,100);
-
     }
 }

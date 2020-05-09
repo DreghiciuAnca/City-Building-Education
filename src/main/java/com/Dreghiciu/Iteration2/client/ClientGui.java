@@ -1,10 +1,14 @@
 package com.Dreghiciu.Iteration2.client;
 
+import org.springframework.data.relational.core.sql.In;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 
 public class ClientGui extends JFrame implements MouseListener {
@@ -12,7 +16,9 @@ public class ClientGui extends JFrame implements MouseListener {
     private JFrame window = new JFrame("City Building");
     private JFrame operation = new JFrame();
     private ArrayList<Map> mapList = new ArrayList<>();
+    private HashMap<Integer,Integer> coordinates = new HashMap<>();
     private int x,y;
+
     public ClientGui()
     {
         initFrameConstruction();
@@ -35,6 +41,7 @@ public class ClientGui extends JFrame implements MouseListener {
         operation.add(clientPanel);
         operation.setDefaultCloseOperation(EXIT_ON_CLOSE);
         operation.setVisible(true);
+
     }
 
 
@@ -46,11 +53,39 @@ public class ClientGui extends JFrame implements MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
         System.out.println(e.getX() + " " + e.getY());
-        Map map = new Map(e.getX(), e.getY());
-        window.add(map);
-        window.setVisible(true);
+        JFrame message_coordinates = new JFrame();
         x =e.getX()/100 *100;
         y =e.getY()/100 *100;
+        boolean ok =false;
+
+
+        for(int i = 0; i< coordinates.size(); i++)
+        {
+
+            if(coordinates.containsKey(x))
+            {
+                if(coordinates.get(x) == y) {
+                    ok = true;
+                    JOptionPane.showMessageDialog(message_coordinates,"You cannot put a place here. Pick another one!");
+                    break;
+                }
+            }
+
+        }
+        if(!ok)
+            coordinates.put(x,y);
+        Map map = new Map(e.getX(), e.getY());
+
+
+
+
+
+        window.add(map);
+        window.setVisible(true);
+
+
+
+
 
     }
 

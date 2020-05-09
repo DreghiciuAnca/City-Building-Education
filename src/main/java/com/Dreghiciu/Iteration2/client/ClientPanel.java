@@ -32,10 +32,14 @@ public class ClientPanel extends JPanel {
         @Override
         public void actionPerformed(ActionEvent e) {
             JFrame place_action = new JFrame("Add a place");
+            JFrame message_location = new JFrame();
+
+
             place_action.setLocation(800,100);
             place_action.setVisible(true);
             place_action.setSize(300,400);
-            JLabel label_location = new JLabel("Press where do you want a place on map!");
+
+
             JLabel label_name = new JLabel("name: ");
             JTextField text_name = new JTextField("");
 
@@ -57,7 +61,6 @@ public class ClientPanel extends JPanel {
             JPanel panel_place = new JPanel();
             panel_place.setLayout(new GridLayout(6,2));
 
-            //panel_place.add(label_location);
 
             panel_place.add(label_name);
             panel_place.add(text_name);
@@ -79,6 +82,8 @@ public class ClientPanel extends JPanel {
 
 
             place_action.add(panel_place);
+
+            JOptionPane.showMessageDialog(message_location, "Press where do you want a place on map!");
 
         }
     }
