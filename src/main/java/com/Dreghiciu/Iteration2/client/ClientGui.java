@@ -22,6 +22,7 @@ public class ClientGui extends JFrame implements MouseListener {
     private void initFrameConstruction()
     {
         window.setSize(600, 600);
+        window.setLocation(0,100);
         window.addMouseListener(this);
         window.setDefaultCloseOperation(EXIT_ON_CLOSE);
         window.setVisible(true);
@@ -29,17 +30,9 @@ public class ClientGui extends JFrame implements MouseListener {
     private void initFrame()
     {
         operation.setSize(400,500);
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(5,2));
-        JTextField search_bar = new JTextField("...");
-        JButton search_butt = new JButton("search");
-        JButton add_place = new JButton("Add Place");
-
-
-        panel.add(search_bar);
-        panel.add(search_butt);
-        panel.add(add_place);
-        operation.add(panel);
+        ClientPanel clientPanel = new ClientPanel();
+        operation.setLocation(600,100);
+        operation.add(clientPanel);
         operation.setDefaultCloseOperation(EXIT_ON_CLOSE);
         operation.setVisible(true);
     }

@@ -29,11 +29,12 @@ public class Client {
         }
         String line = "";
         String line2 = "";
-        ClientGui clientGui = new ClientGui();
+
 
         while((!line.equals("Over")) && (!line2.equals("Over")))
         {
             try{
+                ClientGui clientGui = new ClientGui();
                 line= input.readLine();
                 System.out.println(line);
                 output.writeUTF(line);
