@@ -10,6 +10,8 @@ public class ClientPanel extends JPanel {
     public JButton search_bar_button = null;
     public JButton add_place = null;
 
+
+
     public ClientPanel()
     {
         this.setLayout(new GridLayout(2,2));
@@ -18,16 +20,27 @@ public class ClientPanel extends JPanel {
 
     private void createPanel()
     {
-        search_bar = new JTextField("...");
+        search_bar = new JTextField("");
         search_bar_button = new JButton("Search");
         add_place = new JButton("Add a new place");
+
 
         this.add(search_bar);
         this.add(search_bar_button);
         this.add(add_place);
-        add_place.addActionListener(new ActionSearch());
+        add_place.addActionListener(new ActionPlace());
+        search_bar_button.addActionListener(this::actionPerformed);
     }
-    static class ActionSearch implements ActionListener{
+
+    public void actionPerformed(ActionEvent e) {
+        String[] searchBarText = null;
+        String text_search = this.search_bar.getText();
+        searchBarText = text_search.split(" ");
+
+
+
+    }
+    static class ActionPlace implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -87,4 +100,5 @@ public class ClientPanel extends JPanel {
 
         }
     }
+
 }

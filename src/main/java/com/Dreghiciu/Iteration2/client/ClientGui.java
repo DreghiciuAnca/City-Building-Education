@@ -14,7 +14,7 @@ import java.util.HashMap;
 public class ClientGui extends JFrame implements MouseListener {
 
     private JFrame window = new JFrame("City Building");
-    private JFrame operation = new JFrame();
+    private JFrame operation = new JFrame("Operation");
     private ArrayList<Map> mapList = new ArrayList<>();
     private HashMap<Integer,Integer> coordinates = new HashMap<>();
     private int x,y;
@@ -58,10 +58,8 @@ public class ClientGui extends JFrame implements MouseListener {
         y =e.getY()/100 *100;
         boolean ok =false;
 
-
         for(int i = 0; i< coordinates.size(); i++)
         {
-
             if(coordinates.containsKey(x))
             {
                 if(coordinates.get(x) == y) {
@@ -70,20 +68,13 @@ public class ClientGui extends JFrame implements MouseListener {
                     break;
                 }
             }
-
         }
         if(!ok)
             coordinates.put(x,y);
         Map map = new Map(e.getX(), e.getY());
 
-
-
-
-
         window.add(map);
         window.setVisible(true);
-
-
 
 
 

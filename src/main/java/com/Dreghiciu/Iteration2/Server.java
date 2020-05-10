@@ -1,6 +1,6 @@
 package com.Dreghiciu.Iteration2;
 
-import org.springframework.boot.SpringApplication;
+import com.Dreghiciu.Iteration2.dto.DTO;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.io.*;
@@ -11,19 +11,16 @@ import java.net.*;
 public class Server {
     private Socket socket = null;
     private ServerSocket server = null;
-    private DataInputStream in = null;
-    private DataOutputStream output = null;
-    private DataInputStream input = null;
+    private ObjectInputStream inputStream = null;
+    //private ObjectOutputStream outputStream = null;
     public Server()
     {
 
     }
+    public Server(int port) {
 
-    public Server(int port)
-    {
 
-        try{
-
+        try {
             server = new ServerSocket(5000);
             System.out.println("Server Started");
 
@@ -32,48 +29,48 @@ public class Server {
             socket = server.accept();
             System.out.println("Client accepted");
 
-            in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            input = new DataInputStream(System.in);
-            output = new DataOutputStream(socket.getOutputStream());
+
+            DataInputStream input = new DataInputStream(System.in);
+            inputStream = new ObjectInputStream(socket.getInputStream());
+            //outputStream = new ObjectOutputStream(socket.getOutputStream());
+
+
             String line = "";
-            String line2 = "";
+           boolean ok = true;
 
-            while ((!line.equals("Over"))&&(!line2.equals("Over")))
-            {
+            while(!line.equals("Over")) {
+
+                //read Object
                 try {
-                    line = in.readUTF();
-                    System.out.println(line);
 
-                }
-                catch (IOException e)
-                {
+                    ok = false;
+
+                    DTO packet = (DTO) inputStream.readObject();
+                    System.out.println(packet.toString());
+                    line = input.readLine();
+                } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                try{
-                    line2 = input.readLine();
-                    //System.out.println(line2);
-                    output.writeUTF(line2);
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
+
             }
             System.out.println("Closing connection");
-            input.close();
             socket.close();
-            in.close();
-            output.close();
-        } catch (IOException e) {
+            inputStream.close();
+            input.close();
+            //outputStream.close();
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
+
+
+
     }
-
-
     public static void main(String[] args)
     {
-        Server server = new Server(5000);
         //SpringApplication.run(Server.class, args);
+        Server server = new Server(5000);
+
 
     }
 

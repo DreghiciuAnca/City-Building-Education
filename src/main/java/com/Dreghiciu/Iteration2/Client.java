@@ -1,5 +1,6 @@
 package com.Dreghiciu.Iteration2;
 import com.Dreghiciu.Iteration2.client.ClientGui;
+import com.Dreghiciu.Iteration2.dto.DTO;
 
 import javax.swing.*;
 import java.net.*;
@@ -9,18 +10,20 @@ public class Client {
 
     private Socket socket = null;
     private DataInputStream input = null;
-    private DataOutputStream output = null;
-    private DataInputStream in = null;
+    private ObjectOutputStream output = null;
+
     private ClientGui clientGui = null;
 
     public Client(String address, int port)
     {
+        ClientGui clientGui = new ClientGui();
+        DTO sendDTO = new DTO("MAMA", "TATA", "Sebes");
         try{
             socket = new Socket(address,port);
             System.out.println("Connected");
             input = new DataInputStream(System.in);
-            in = new DataInputStream(new BufferedInputStream(socket.getInputStream()));
-            output = new DataOutputStream(socket.getOutputStream());
+            output = new ObjectOutputStream(socket.getOutputStream());
+
         }catch(UnknownHostException e)
         {
             System.out.println(e);
@@ -28,31 +31,19 @@ public class Client {
             e.printStackTrace();
         }
         String line = "";
-        String line2 = "";
 
+        while(!line.equals("Over")) {
+            //send DTO
 
-        while((!line.equals("Over")) && (!line2.equals("Over")))
-        {
-            try{
-                ClientGui clientGui = new ClientGui();
-                line= input.readLine();
-                System.out.println(line);
-                output.writeUTF(line);
-
+            try {
+                output.writeObject(sendDTO);
+                System.out.println(sendDTO.toString());
+                line = input.readLine();
             } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try{
-                line2 = in.readUTF();
-                System.out.println(line2);
-            }
-            catch (IOException e)
-            {
                 e.printStackTrace();
             }
         }
        try{
-           in.close();
            input.close();
            output.close();
            socket.close();
