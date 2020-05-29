@@ -81,14 +81,14 @@ public class Panel extends JPanel{
 
         String text_search = this.search_bar.getText();
 
-        String re ="create.+place";
+        String re =".*create.+place";
         ArrayList<String> regex = new ArrayList<String>();
         regex.add(re);
-        regex.add("add.+place");
-        regex.add("create.+building");
-        regex.add("add.+building");
-        regex.add("delete.+place");
-        regex.add("delete.+building");
+        regex.add(".*add.+place");
+        regex.add(".*create.+building");
+        regex.add(".*add.+building");
+        regex.add(".*delete.+place");
+        regex.add(".*delete.+building");
         int i;
         for(i=0; i<regex.size(); i++)
         {
