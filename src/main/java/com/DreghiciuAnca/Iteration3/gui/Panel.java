@@ -1,5 +1,7 @@
 package com.DreghiciuAnca.Iteration3.gui;
 
+import com.DreghiciuAnca.Iteration3.dto.DeletePlaceDto;
+import com.DreghiciuAnca.Iteration3.dto.PlaceDTO;
 import com.DreghiciuAnca.Iteration3.intent.IntentHandler;
 
 
@@ -44,10 +46,6 @@ public class Panel extends JPanel{
 
     public String string_name ="";
     public String string_display_name = "";
-    public String string_address = "";
-    public String string_capacity = "";
-    public String string_availability ="";
-    public String string_contact ="";
     public String string_district_name= "";
     public String string_city_name ="";
 
@@ -56,6 +54,8 @@ public class Panel extends JPanel{
 
     public int indexAgent = -1;
 
+    public PlaceDTO placeDTO = new PlaceDTO();
+    public DeletePlaceDto placeDeleteDTO = null;
 
     public Panel()
     {
@@ -112,6 +112,7 @@ public class Panel extends JPanel{
             {
 
                 createPlace();
+
                 this.indexAgent =0;
                 break;
             }
@@ -177,12 +178,16 @@ public class Panel extends JPanel{
         {
             string_name = text_name.getText();
             string_display_name = text_display_name.getText();
-            string_address = text_address.getText();
-            string_capacity = text_capacity.getText();
-            string_availability = text_availability.getText();
-            string_contact = text_contact.getText();
-            string_district_name = text_display_name.getText();
+            string_district_name = text_name_district.getText();
             string_city_name = text_name_city.getText();
+
+            placeDTO.setAddress(text_address.getText());
+            placeDTO.setAvailability(text_availability.getText());
+            placeDTO.setCapacity(text_capacity.getText());
+            placeDTO.setContact(text_contact.getText());
+            placeDTO.setDistrictDTO(null);
+            placeDTO.setName(text_name.getText());
+            placeDTO.setDisplayName(text_display_name.getText());
 
 
             text_name.setText("");
@@ -191,9 +196,9 @@ public class Panel extends JPanel{
             text_capacity.setText("");
             text_availability.setText("");
             text_contact.setText("");
-            text_display_name.setText("");
+            text_name_district.setText("");
             text_name_city.setText("");
-            IntentHandler intentHandler = new IntentHandler(this.indexAgent);
+            IntentHandler intentHandler = new IntentHandler(this.indexAgent, placeDTO);
 
         }
         public void createPlace()
@@ -258,6 +263,10 @@ public class Panel extends JPanel{
             panel_place_delete.add(textFieldAddress);
             panel_place_delete.add(delete_place_button);
 
+            placeDeleteDTO.setName(textFieldName.getText());
+            placeDeleteDTO.setAddress(textFieldAddress.getText());
+
+
             place_delete.add(panel_place_delete);
             delete_place_button.addActionListener(this:: actionDelete);
 
@@ -266,7 +275,7 @@ public class Panel extends JPanel{
 
         public void actionDelete(ActionEvent e)
         {
-            IntentHandler intentHandler = new IntentHandler(this.indexAgent);
+            IntentHandler intentHandler = new IntentHandler(this.indexAgent, placeDeleteDTO);
         }
 
 

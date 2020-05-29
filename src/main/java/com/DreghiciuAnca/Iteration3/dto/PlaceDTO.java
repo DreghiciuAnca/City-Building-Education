@@ -3,6 +3,8 @@ package com.DreghiciuAnca.Iteration3.dto;
 import java.io.Serializable;
 
 public class PlaceDTO implements Serializable {
+    private String name;
+    private String displayName;
     private String address;
     private String contact;
     private String proximity;
@@ -12,12 +14,15 @@ public class PlaceDTO implements Serializable {
     private DistrictDTO districtDTO;
     private PlaceTypeDTO placeTypeDTO;
 
+
     public PlaceDTO()
     {
 
     }
 
-    public PlaceDTO(String address, String contact, String proximity, String capacity, String availability) {
+    public PlaceDTO(String name,String displayName,String address, String contact, String proximity, String capacity, String availability) {
+        this.name =name;
+        this.displayName =displayName;
         this.address = address;
         this.contact = contact;
         this.proximity = proximity;
@@ -89,10 +94,15 @@ public class PlaceDTO implements Serializable {
         this.placeTypeDTO = placeTypeDTO;
     }
 
+    public void setName(String name){this.name =name;}
+    public void setDisplayName(String displayName){this.displayName = displayName;}
+
     @Override
     public String toString() {
         return "PlaceDTO{" +
-                "address='" + address + '\'' +
+                "name='" + name + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", address='" + address + '\'' +
                 ", contact='" + contact + '\'' +
                 ", proximity='" + proximity + '\'' +
                 ", capacity='" + capacity + '\'' +

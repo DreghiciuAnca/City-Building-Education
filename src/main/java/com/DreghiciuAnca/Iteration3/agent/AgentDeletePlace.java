@@ -17,7 +17,7 @@ public class AgentDeletePlace {
     private ServerSocket server = null;
     private ObjectInputStream inputStream = null;
 
-    public AgentDeletePlace(int port)
+    public AgentDeletePlace(int port, DeletePlaceDto deletePlaceDto)
     {
         try{
             server = new ServerSocket(port);
@@ -25,7 +25,7 @@ public class AgentDeletePlace {
 
             System.out.println("Waiting for a intent... ");
 
-            IntentDeletePlace intentDeletePlace = new IntentDeletePlace("127.0.0.1",4030);
+            IntentDeletePlace intentDeletePlace = new IntentDeletePlace("127.0.0.1",4030,deletePlaceDto);
 
             socket = server.accept();
             System.out.println("Intent accepted");

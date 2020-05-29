@@ -12,10 +12,12 @@ public class IntentDeletePlace {
     private Socket socket = null;
     private DataInputStream input = null;
     private ObjectOutputStream output = null;
+    private DeletePlaceDto deletePlaceDto = null;
 
-    public IntentDeletePlace(String address, int port)
+    public IntentDeletePlace(String address, int port, DeletePlaceDto deletePlaceDto)
     {
-        DeletePlaceDto deletePlaceDto = new DeletePlaceDto("STC","Sebes");
+        //DeletePlaceDto deletePlaceDto = new DeletePlaceDto("STC","Sebes");
+        this.deletePlaceDto = deletePlaceDto;
         try{
             socket = new Socket(address,port);
             System.out.println("Connected");

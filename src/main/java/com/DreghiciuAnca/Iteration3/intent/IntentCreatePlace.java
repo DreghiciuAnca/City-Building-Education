@@ -14,10 +14,12 @@ public class IntentCreatePlace {
     private Socket socket = null;
     private DataInputStream input = null;
     private ObjectOutputStream output = null;
+    private PlaceDTO placeDTO = null;
 
-    public IntentCreatePlace(String address, int port)
+    public IntentCreatePlace(String address, int port, PlaceDTO placeDto)
     {
-        PlaceDTO placeDto = new PlaceDTO("Sebes","072938123","proximity","capacity","available");
+        //PlaceDTO placeDto = new PlaceDTO("Anca","Dre","Sebes","072938123","proximity","capacity","available");
+        this.placeDTO = placeDto;
         try{
             socket = new Socket(address,port);
             System.out.println("Connected");
@@ -36,7 +38,7 @@ public class IntentCreatePlace {
             //send DTO
 
             try {
-                output.writeObject(placeDto);
+                output.writeObject(placeDTO);
             } catch (IOException e) {
                 e.printStackTrace();
             }

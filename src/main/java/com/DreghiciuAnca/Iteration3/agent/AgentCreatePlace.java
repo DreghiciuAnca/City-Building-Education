@@ -22,15 +22,15 @@ public class AgentCreatePlace {
     private ServerSocket server = null;
     private ObjectInputStream inputStream = null;
 
-    public AgentCreatePlace(int port)
+
+    public AgentCreatePlace(int port,PlaceDTO placeDto)
     {
         try {
                 server = new ServerSocket(port);
                 System.out.println("Agent Create Place Started");
 
                 System.out.println("Waiting for a intent... ");
-
-                IntentCreatePlace intentCreatePlace = new IntentCreatePlace("127.0.0.1",4030);
+                IntentCreatePlace intentCreatePlace = new IntentCreatePlace("127.0.0.1",4030, placeDto);
 
                 socket = server.accept();
                 System.out.println("Intent accepted");
