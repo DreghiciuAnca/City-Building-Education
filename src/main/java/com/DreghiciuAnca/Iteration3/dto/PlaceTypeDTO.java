@@ -40,4 +40,13 @@ public class PlaceTypeDTO {
     public void setIcon(String icon) {
         this.icon = icon;
     }
+
+    @Override
+    public String toString() {
+        return "PlaceTypeDTO{" +
+                "name='" + name + '\'' +
+                ", display_name='" + display_name + '\'' +
+                ", icon='" + icon + '\'' +
+                '}';
+    }
 }

@@ -49,4 +49,14 @@ public class GeometryDTO {
     public void setCenterY(Integer centerY) {
         this.centerY = centerY;
     }
+
+    @Override
+    public String toString() {
+        return "GeometryDTO{" +
+                "width=" + width +
+                ", height=" + height +
+                ", centerX=" + centerX +
+                ", centerY=" + centerY +
+                '}';
+    }
 }

@@ -1,6 +1,8 @@
 package com.DreghiciuAnca.Iteration3.dto;
 
-public class PlaceDTO {
+import java.io.Serializable;
+
+public class PlaceDTO implements Serializable {
     private String address;
     private String contact;
     private String proximity;
@@ -85,5 +87,19 @@ public class PlaceDTO {
 
     public void setPlaceTypeDTO(PlaceTypeDTO placeTypeDTO) {
         this.placeTypeDTO = placeTypeDTO;
+    }
+
+    @Override
+    public String toString() {
+        return "PlaceDTO{" +
+                "address='" + address + '\'' +
+                ", contact='" + contact + '\'' +
+                ", proximity='" + proximity + '\'' +
+                ", capacity='" + capacity + '\'' +
+                ", availability='" + availability + '\'' +
+                ", geometryDTO=" + geometryDTO +
+                ", districtDTO=" + districtDTO +
+                ", placeTypeDTO=" + placeTypeDTO +
+                '}';
     }
 }

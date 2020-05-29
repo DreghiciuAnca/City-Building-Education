@@ -59,4 +59,13 @@ public class DistrictDTO {
         }
         this.setRating(rating);
     }
+
+    @Override
+    public String toString() {
+        return "DistrictDTO{" +
+                "name='" + name + '\'' +
+                ", rating=" + rating +
+                ", cityDTO=" + cityDTO +
+                '}';
+    }
 }

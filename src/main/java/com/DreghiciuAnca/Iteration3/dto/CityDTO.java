@@ -73,4 +73,13 @@ public class CityDTO {
         }
         this.setPollution(pol);
     }
+
+    @Override
+    public String toString() {
+        return "CityDTO{" +
+                "name='" + name + '\'' +
+                ", score=" + score +
+                ", pollution=" + pollution +
+                '}';
+    }
 }
