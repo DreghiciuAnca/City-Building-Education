@@ -45,7 +45,6 @@ public class Agent {
 
                     ok = false;
 
-
                     DTO packet = (DTO) inputStream.readObject();
                     System.out.println(packet.toString());
                     line = input.readLine();
@@ -78,7 +77,6 @@ public class Agent {
     {
         //SpringApplication.run(Server.class, args);
         Agent server = new Agent(5000);
-
 
     }
 

@@ -12,6 +12,7 @@ public class Gui extends JFrame implements MouseListener {
     private ArrayList<Map> mapList = new ArrayList<>();
     private HashMap<Integer,Integer> coordinates = new HashMap<>();
     private int x,y;
+    public String search_bar_text = "";
 
 
     public Gui()
@@ -32,6 +33,7 @@ public class Gui extends JFrame implements MouseListener {
     {
         operation.setSize(400,500);
         Panel panel = new Panel();
+        this.search_bar_text = panel.text;
         operation.setLocation(600,100);
         operation.add(panel);
         operation.setDefaultCloseOperation(EXIT_ON_CLOSE);

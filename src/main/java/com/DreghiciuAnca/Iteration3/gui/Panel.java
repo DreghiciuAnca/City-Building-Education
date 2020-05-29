@@ -1,5 +1,7 @@
 package com.DreghiciuAnca.Iteration3.gui;
 
+import com.DreghiciuAnca.Iteration3.intent.IntentHandler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,28 +12,8 @@ public class Panel extends JPanel{
     public JButton search_bar_button = null;
     public JButton add_place = null;
 
-    public JLabel label_name =null;
-    public JTextField text_name = new JTextField("");
 
-    public JLabel label_display_name = new JLabel("display name: ");
-    public JTextField text_display_name = new JTextField("");
-
-    public JLabel label_address = new JLabel("adress: ");
-    public JTextField text_address = new JTextField("");
-
-    public JLabel label_capacity = new JLabel("capacity: ");
-    public JTextField text_capacity = new JTextField("");
-
-    public JLabel label_availability = new JLabel("availability: ");
-    public JTextField text_availability = new JTextField("");
-
-    public JLabel label_contact = new JLabel("contact: ");
-    public JTextField text_contact = new JTextField("");
-
-    public JButton button_save = new JButton("Save");
-
-
-
+    public String text = "";
 
 
     public Panel()
@@ -58,10 +40,10 @@ public class Panel extends JPanel{
         String[] searchBarText = null;
         String text_search = this.search_bar.getText();
         searchBarText = text_search.split(" ");
-
-
+        IntentHandler intentHandler = new IntentHandler(text_search);
 
     }
+
     static class ActionPlace implements ActionListener {
 
         public JLabel label_name = new JLabel("name: ");

@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class Intent {
+public class Client {
     private Socket socket = null;
     private DataInputStream input = null;
     private ObjectOutputStream output = null;
@@ -20,11 +20,15 @@ public class Intent {
 
     private Gui clientGui = null;
 
-    public Intent(String address, int port)
+    public Client(String address, int port)
     {
         Gui clientGui = new Gui();
         DTO sendDTO = new DTO("Name", "displayName", "Sebes");
+        String text_intent = "";
+        text_intent = clientGui.search_bar_text;
+
         try{
+            System.out.println(text_intent);
             socket = new Socket(address,port);
             System.out.println("Connected");
             input = new DataInputStream(System.in);
@@ -70,6 +74,6 @@ public class Intent {
 
     public static void main(String[] args){
 
-        Intent client = new Intent("127.0.0.1", 5000);
+        Client client = new Client("127.0.0.1", 5000);
     }
 }
