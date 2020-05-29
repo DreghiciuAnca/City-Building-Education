@@ -1,12 +1,15 @@
 package com.DreghiciuAnca.Iteration3.gui;
 
-import com.DreghiciuAnca.Iteration3.intent.IntentCreatePlace;
 import com.DreghiciuAnca.Iteration3.intent.IntentHandler;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Panel extends JPanel{
     public JTextField search_bar = null;
@@ -51,7 +54,7 @@ public class Panel extends JPanel{
 
 
 
-    public String text = "";
+    public int indexAgent = -1;
 
 
     public Panel()
@@ -75,15 +78,52 @@ public class Panel extends JPanel{
     }
 
     public void actionPerformed(ActionEvent e) {
-        String[] searchBarText = null;
+
         String text_search = this.search_bar.getText();
-        searchBarText = text_search.split(" ");
-        if((searchBarText[0].equals("create")||searchBarText[0].equals("add")) &&
-                (searchBarText[1].equals("place") || searchBarText[1].equals("building")))
-            createPlace();
-        else if(searchBarText[0].equals("delete") && searchBarText[1].equals("place"))
-            deletePlace();
-        this.text = text_search;
+
+        String re ="create.+place";
+        ArrayList<String> regex = new ArrayList<String>();
+        regex.add(re);
+        regex.add("add.+place");
+        regex.add("create.+building");
+        regex.add("add.+building");
+        regex.add("delete.+place");
+        regex.add("delete.+building");
+        int i;
+        for(i=0; i<regex.size(); i++)
+        {
+            Pattern pt = Pattern.compile(regex.get(i));
+            Matcher matcher = pt.matcher(text_search);
+            boolean result = matcher.matches();
+            if(result)
+                break;
+
+        }
+        switch (i)
+        {
+            case 0:
+            {
+
+
+            }
+            case 1:
+            case 2:
+            case 3:
+            {
+
+                createPlace();
+                this.indexAgent =0;
+                break;
+            }
+            case 4:
+            case 5:
+            {
+                deletePlace();
+                this.indexAgent =1;
+                break;
+            }
+        }
+
 
     }
 
@@ -153,7 +193,7 @@ public class Panel extends JPanel{
             text_contact.setText("");
             text_display_name.setText("");
             text_name_city.setText("");
-            IntentHandler intentHandler = new IntentHandler(this.text);
+            IntentHandler intentHandler = new IntentHandler(this.indexAgent);
 
         }
         public void createPlace()
@@ -226,7 +266,7 @@ public class Panel extends JPanel{
 
         public void actionDelete(ActionEvent e)
         {
-            IntentHandler intentHandler = new IntentHandler(this.text);
+            IntentHandler intentHandler = new IntentHandler(this.indexAgent);
         }
 
 

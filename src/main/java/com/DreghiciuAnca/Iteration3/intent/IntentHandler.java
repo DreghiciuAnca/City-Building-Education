@@ -4,45 +4,37 @@ import com.DreghiciuAnca.Iteration3.agent.AgentCreatePlace;
 import com.DreghiciuAnca.Iteration3.agent.AgentDeletePlace;
 
 import java.io.DataInputStream;
+import java.util.regex.*;
 import java.net.Socket;
 
 public class IntentHandler {
-    private String intent = "";
-    private String noun ="";
-    private String verb = "";
+    private int index =0;
 
     private Socket socket = null;
     private DataInputStream input = null;
 
-    public IntentHandler(String intent)
+    public IntentHandler(int index)
     {
-        this.intent = intent;
-        splitIntent(this.intent);
+        this.index = index;
+        splitIntent(this.index);
     }
 
-    public String getIntent()
+    private void splitIntent(int index)
     {
-        return this.intent;
-    }
-    private void splitIntent(String intent)
-    {
-        String[] words =null;
-        words = intent.split(" ");
-        for(String i : words)
-            System.out.print(i);
-
-        this.verb= words[0];
-        this.noun = words[1];
-
-        if(verb.equals("create") && noun.equals("place"))
+        switch(index)
         {
+            case 0:
+            {
+                AgentCreatePlace agentCreatePlace = new AgentCreatePlace(4030);
+                break;
+            }
+            case 1:
+            {
+                AgentDeletePlace agentDeletePlace = new AgentDeletePlace( 4000);
+                break;
+            }
+        }
 
-            AgentCreatePlace agentCreatePlace = new AgentCreatePlace(4030);
-        }
-        if(verb.equals("delete") && noun.equals("place") || noun.equals("building"))
-        {
-            AgentDeletePlace agentDeletePlace = new AgentDeletePlace( 4000);
-        }
     }
 
 

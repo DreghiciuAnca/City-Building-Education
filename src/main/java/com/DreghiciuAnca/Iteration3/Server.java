@@ -8,16 +8,16 @@ import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class Agent {
+public class Server {
     private Socket socket = null;
     private ServerSocket server = null;
     private ObjectInputStream inputStream = null;
     //private ObjectOutputStream outputStream = null;
-    public Agent()
+    public Server()
     {
 
     }
-    public Agent(int port) {
+    public Server(int port) {
 
 
         try {
@@ -32,7 +32,6 @@ public class Agent {
 
             DataInputStream input = new DataInputStream(System.in);
             inputStream = new ObjectInputStream(socket.getInputStream());
-            //outputStream = new ObjectOutputStream(socket.getOutputStream());
 
 
             String line = "";
@@ -76,7 +75,7 @@ public class Agent {
     public static void main(String[] args)
     {
         //SpringApplication.run(Server.class, args);
-        Agent server = new Agent(5000);
+        Server server = new Server(5000);
 
     }
 
