@@ -24,17 +24,12 @@ public class Client {
     {
         Gui clientGui = new Gui();
         DTO sendDTO = new DTO("Name", "displayName", "Sebes");
-        String text_intent = "";
-        text_intent = clientGui.search_bar_text;
 
         try{
-            System.out.println(text_intent);
             socket = new Socket(address,port);
             System.out.println("Connected");
             input = new DataInputStream(System.in);
             output = new ObjectOutputStream(socket.getOutputStream());
-
-            out = new DataOutputStream(socket.getOutputStream());
 
         }catch(UnknownHostException e)
         {
@@ -54,18 +49,13 @@ public class Client {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            try{
-                out.writeUTF("string send");
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+
         }
         try{
             input.close();
             output.close();
             socket.close();
+
             clientGui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         } catch (IOException e) {
             e.printStackTrace();

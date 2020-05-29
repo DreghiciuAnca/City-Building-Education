@@ -25,45 +25,34 @@ public class AgentCreatePlace {
     public AgentCreatePlace(int port)
     {
         try {
-            server = new ServerSocket(port);
-            System.out.println("Server Started");
+                server = new ServerSocket(port);
+                System.out.println("Agent Create Place Started");
 
-            System.out.println("Waiting for a intent... ");
+                System.out.println("Waiting for a intent... ");
 
-            IntentCreatePlace intentCreatePlace = new IntentCreatePlace("127.0.0.1",4030);
+                IntentCreatePlace intentCreatePlace = new IntentCreatePlace("127.0.0.1",4030);
 
-            socket = server.accept();
-            System.out.println("Intent accepted");
-
-
-            DataInputStream input = new DataInputStream(System.in);
-            inputStream = new ObjectInputStream(socket.getInputStream());
+                socket = server.accept();
+                System.out.println("Intent accepted");
+                DataInputStream input = new DataInputStream(System.in);
+                inputStream = new ObjectInputStream(socket.getInputStream());
             //outputStream = new ObjectOutputStream(socket.getOutputStream());
-
+            PlaceDTO packet =null;
 
             String line = "";
-            boolean ok = true;
 
-            while(!line.equals("Over")) {
+
+            while(packet == null) {
 
                 //read Object
                 try {
 
-                    ok = false;
-
-                    PlaceDTO packet = (PlaceDTO) inputStream.readObject();
+                    packet = (PlaceDTO) inputStream.readObject();
                     System.out.println(packet.toString());
-                    line = input.readLine();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                try{
-                    String linie = input.readUTF();
-                }
-                catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
+
 
             }
             System.out.println("Closing connection");

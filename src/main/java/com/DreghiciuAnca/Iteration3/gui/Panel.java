@@ -78,8 +78,11 @@ public class Panel extends JPanel{
         String[] searchBarText = null;
         String text_search = this.search_bar.getText();
         searchBarText = text_search.split(" ");
-        if(searchBarText[0].equals("create") && searchBarText[1].equals("place"))
+        if((searchBarText[0].equals("create")||searchBarText[0].equals("add")) &&
+                (searchBarText[1].equals("place") || searchBarText[1].equals("building")))
             createPlace();
+        else if(searchBarText[0].equals("delete") && searchBarText[1].equals("place"))
+            deletePlace();
         this.text = text_search;
 
     }
@@ -197,6 +200,33 @@ public class Panel extends JPanel{
             place_action.add(panel_place);
 
             JOptionPane.showMessageDialog(message_location, "Press where do you want a place on map!");
+        }
+
+        public void deletePlace()
+        {
+            JFrame place_delete = new JFrame("Delete a place");
+            JPanel panel_place_delete = new JPanel();
+            JLabel name = new JLabel("name: ");
+            JLabel address = new JLabel("address: ");
+            JTextField textFieldName = new JTextField(" ");
+            JTextField textFieldAddress = new JTextField(" ");
+
+            JButton delete_place_button = new JButton("delete place");
+            panel_place_delete.add(name);
+            panel_place_delete.add(textFieldName);
+            panel_place_delete.add(address);
+            panel_place_delete.add(textFieldAddress);
+            panel_place_delete.add(delete_place_button);
+
+            place_delete.add(panel_place_delete);
+            delete_place_button.addActionListener(this:: actionDelete);
+
+
+        }
+
+        public void actionDelete(ActionEvent e)
+        {
+            IntentHandler intentHandler = new IntentHandler(this.text);
         }
 
 

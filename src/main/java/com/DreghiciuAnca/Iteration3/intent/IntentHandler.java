@@ -1,6 +1,7 @@
 package com.DreghiciuAnca.Iteration3.intent;
 
 import com.DreghiciuAnca.Iteration3.agent.AgentCreatePlace;
+import com.DreghiciuAnca.Iteration3.agent.AgentDeletePlace;
 
 import java.io.DataInputStream;
 import java.net.Socket;
@@ -33,16 +34,14 @@ public class IntentHandler {
         this.verb= words[0];
         this.noun = words[1];
 
-        if(words[0].equals("create") || words[0].equals("add"))
+        if(verb.equals("create") && noun.equals("place"))
         {
-            System.out.print("o intrat?");
+
             AgentCreatePlace agentCreatePlace = new AgentCreatePlace(4030);
-           //IntentCreatePlace intentCreatePlace = new IntentCreatePlace("127.0.0.1",4030);
-            //datele astea trebuie trimise la AgentCreatePlace prin port
-
-            //agentCreatePlace.setVerb(verb);
-            //agentCreatePlace.setNoun(noun);
-
+        }
+        if(verb.equals("delete") && noun.equals("place") || noun.equals("building"))
+        {
+            AgentDeletePlace agentDeletePlace = new AgentDeletePlace( 4000);
         }
     }
 

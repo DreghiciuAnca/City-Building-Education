@@ -1,54 +1,49 @@
 package com.DreghiciuAnca.Iteration3.intent;
 
+import com.DreghiciuAnca.Iteration3.dto.DeletePlaceDto;
 import com.DreghiciuAnca.Iteration3.dto.PlaceDTO;
 
-import javax.swing.*;
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
-public class IntentCreatePlace {
+public class IntentDeletePlace {
     private Socket socket = null;
     private DataInputStream input = null;
     private ObjectOutputStream output = null;
 
-    public IntentCreatePlace(String address, int port)
+    public IntentDeletePlace(String address, int port)
     {
-        PlaceDTO placeDto = new PlaceDTO("Sebes","072938123","proximity","capacity","available");
+        DeletePlaceDto deletePlaceDto = new DeletePlaceDto("STC","Sebes");
         try{
             socket = new Socket(address,port);
             System.out.println("Connected");
             input = new DataInputStream(System.in);
             output = new ObjectOutputStream(socket.getOutputStream());
-
-            //output = new DataOutputStream(socket.getOutputStream());
-
         }
         catch (IOException e)
         {
             e.printStackTrace();
         }
-        String line = "";
-
             //send DTO
 
             try {
-                output.writeObject(placeDto);
+                output.writeObject(deletePlaceDto);
+                System.out.println(deletePlaceDto.toString());
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         try{
             input.close();
             output.close();
             socket.close();
-
+            //clientGui.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
 
 
     }
